@@ -167,6 +167,14 @@ __INLINE void transform_8sb_to_mb8(U64 out_mb8[], int bitLen, int8u *inp[8], int
    }
 }
 
+#ifdef OPENSSL_IS_BORINGSSL
+// BoringSSL is missing BN_bn2lebinpad function, so map it to
+// BN_bn2le_padded.
+static int BN_bn2lebinpad(const BIGNUM *a, unsigned char *to, int tolen) {
+    return BN_bn2le_padded(to, tolen, a);
+}
+#endif
+
 #ifndef BN_OPENSSL_DISABLE
 // Convert BIGNUM into MB8(Radix=2^52) format
 // Returns bitmask of succesfully converted values
