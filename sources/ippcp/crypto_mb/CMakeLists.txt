@@ -40,7 +40,7 @@ if(NOT OPENSSL_DISABLE)
         # Link static OpenSSL only for patched version
         set(OPENSSL_USE_STATIC_LIBS TRUE)
     endif()
-    find_package(OpenSSL 1.1.0 REQUIRED) # set -DOPENSSL_INCLUDE_DIR= -DOPENSSL_LIBRARIES= -DOPENSSL_ROOT_DIR= to use patched
+    find_package(OpenSSL REQUIRED) # set -DOPENSSL_INCLUDE_DIR= -DOPENSSL_LIBRARIES= -DOPENSSL_ROOT_DIR= to use patched
     list(APPEND IFMA_INCLUDE_DIRS "${OPENSSL_INCLUDE_DIR}")
 endif()
 
